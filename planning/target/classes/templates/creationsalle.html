@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Ajouter une salle</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+      <h1>Ajouter une salle:</h1>
+      <form th:action="@{/creationsalle}"
+         th:object="${salleForm}" method="POST">
+         Nom:
+         <input type="text" th:field="*{nom}" />    
+         <br/>
+         Capacite:
+         <input type="text" th:field="*{capacite}" />     
+         <br/>
+         <input type="submit" value="Ajouter" />
+      </form>
+       
+      <div th:if="${errorMessage}" th:utext="${errorMessage}"
+         style="color:red;font-style:italic;">
+         ...
+      </div>
+      
+   </body>
+</html>

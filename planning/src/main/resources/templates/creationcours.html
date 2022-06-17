@@ -1,0 +1,41 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Ajouter un cours</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+      <h1>Ajouter un cours:</h1>   
+      <form th:action="@{/creationcours}"
+         th:object="${coursForm}" method="POST">
+         Id:
+         <input type="text" th:field="*{id}" />    
+         <br/>
+         Debut:
+         <input type="datetime-local" th:field="*{debut}" />    
+         <br/>
+         Fin:
+         <input type="datetime-local" th:field="*{fin}" />     
+         <br/>
+         Niveau scolaire:
+         <select th:field="*{niveau_scolaire}">
+            <option th:each ="niveau : ${niveaux}" th:value="${niveau.id}" th:utext="${niveau.libelle}">...</option>
+         </select>
+         <br/>
+         Salle:
+         <select th:field="*{salle}">
+            <option th:each ="salle : ${salles}" th:value="${salle.nom}" th:utext="${salle.nom}">...</option>
+         </select>
+         <br/>
+         <input type="submit" value="Creer" />
+      </form>
+      
+      
+      <div th:if="${errorMessage}" th:utext="${errorMessage}"
+         style="color:red;font-style:italic;">
+         ...
+      </div>
+      
+   </body>
+</html>

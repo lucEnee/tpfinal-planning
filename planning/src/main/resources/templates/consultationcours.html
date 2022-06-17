@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Liste des cours</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+      <h1>Liste des cours</h1>
+      <a href="creationcours">Ajouter cours</a>
+      <a href="index">Index</a>
+      <br/><br/>
+      <div>
+         <table border="1">
+            <tr>
+               <th>Id</th>
+               <th>Debut</th>
+               <th>Fin</th>
+               <th>Niveau scolaire</th>
+               <th>Salle</th>
+               <th>Eleve</th>
+            </tr>
+            <tr th:each ="cours : ${listecours}">
+               <td th:utext="${cours.id}">...</td>
+               <td th:utext="${cours.debut}">...</td>
+               <td th:utext="${cours.fin}">...</td>
+               <td th:utext="${cours.niveau_scolaire}">...</td>
+               <td th:utext="${cours.salle}">...</td>
+               <td><ul><li th:each ="eleve : ${eleves}" th:if="${eleve.niveau_scolaire == cours.niveau_scolaire}" th:utext="${eleve.nom + ' ' + eleve.prenom}">...</li></ul></td>
+               <td><form th:action="@{/consultationcours}" method="POST">
+                  <input type="hidden" th:value="${cours.id}" name="id" />
+                  <input type="submit" value="Supprimer" />
+               </form></td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>

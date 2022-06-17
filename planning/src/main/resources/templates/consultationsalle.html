@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <meta charset="UTF-8" />
+      <title>Liste des salles</title>
+      <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}"/>
+   </head>
+   <body>
+      
+      <h1>Liste des salles</h1>
+      <a href="creationsalle">Ajouter une salle</a>
+      <a href="index">Index</a>
+      <br/><br/>
+      <div>
+         <table border="1">
+            <tr>
+               <th>Nom</th>
+               <th>Capacite</th>
+            </tr>
+            <tr th:each ="salle : ${salles}">
+               <td th:utext="${salle.nom}">...</td>
+               <td th:utext="${salle.capacite}">...</td>
+               <td><form th:action="@{/consultationsalle}" method="POST">
+                  <input type="hidden" th:value="${salle.nom}" name="nom" />
+                  <input type="submit" value="Supprimer" />
+               </form></td>
+            </tr>
+         </table>
+      </div>
+   </body>
+</html>
